@@ -69,6 +69,7 @@ app.put('/reviews/:id', (req, res) => {
       console.log(err.message)
     })
 })
+// SHOW EDITED REVIEW
 app.get('/reviews/:id', (req, res) => {
   Review.find().lean().then((review) => {
     res.render('reviews-show', { review: review })
@@ -76,7 +77,15 @@ app.get('/reviews/:id', (req, res) => {
     console.log(err.message);
   })
 })
-
+// DELETE
+  app.delete('/reviews/:id', function (req, res) {
+    console.log('delete review')
+    Review.findByIdAndRemove(req.params.id).then((review) => {
+      res.redirect('/');
+    }).catch((err) => {
+      console.log(err.message);
+    })
+  })
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log('App listening on port 3000!')
