@@ -30,11 +30,20 @@ app.post('/reviews', (req, res) => {
   Reviews.save()
     .then(() => {
       // then redirect to the root route
-      res.redirect('/');
+      res.redirect(`/reviews/${reviews._id}`)
     }).catch(err => {
       console.log(err.message);
       res.status(400).send("Error saving review");
     })
+})
+// SHOW 
+app.get('/reviews', (req, res) => {
+ Review.find().lean().then((review) => {
+    // console.log(review)
+    res.render('reviews-show', { review: review })
+  }).catch((err) => {
+    console.log(err.message);
+  })
 })
 // NEW
 app.get('/reviews/new', (req, res) => {
