@@ -6,6 +6,7 @@ const methodOverride = require('method-override')
 const { engine } = require('express-handlebars')
 const bodyParser = require('body-parser');
 const Review = require('./models/review');
+const Comment = require('./models/comment');
 const app = express()
 
 app.engine('handlebars', engine({ defaultLayout: 'main' }))
@@ -17,6 +18,7 @@ app.use(express.static(__dirname + 'public'));
 // app.js
 
 const reviews = require('./controllers/reviews')(app, Review);
+const comments = require('./controllers/comments')(app, Comment);
 // INDEX
 app.get('/', (req, res) => {
   res.render('reviews-index', { reviews: reviews });
