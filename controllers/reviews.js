@@ -3,14 +3,14 @@ const Comment = require('../models/comment');
 
 module.exports = function(app, Review) {
 
-  app.get('/', (req, res) => {
-    Review.find().lean().then((review) => {
-    // console.log(review)
-    res.render('reviews-show', { review: review })
-  }).catch((err) => {
-    console.log(err.message);
-  })
-  });
+  // app.get('/', (req, res) => {
+  //   Review.find().lean().then((review) => {
+  //   // console.log(review)
+  //   res.render('reviews-show', { review: review })
+  // }).catch((err) => {
+  //   console.log(err.message);
+  // })
+  // });
   // CREATE
 app.post('/reviews', (req, res) => {
   // create a new review

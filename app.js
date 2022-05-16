@@ -19,10 +19,11 @@ app.use(express.static(__dirname + 'public'));
 
 const reviews = require('./controllers/reviews')(app, Review);
 const comments = require('./controllers/comments')(app, Comment);
+const movies = require('./controllers/movies')(app);
 // INDEX
-app.get('/', (req, res) => {
-  res.render('reviews-index', { reviews: reviews });
-})
+// app.get('/', (req, res) => {
+//   res.render('reviews-index', { reviews: reviews });
+// })
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
